@@ -5,6 +5,7 @@ Tech stack are as follows:
 |-|-|
 | [NGINX](https://hub.docker.com/_/nginx) | Proxy|
 | [OpenLDAP](https://github.com/osixia/docker-openldap) | Federated Identity Access Management |
+| [LDAP User Manager](https://github.com/wheelybird/ldap-user-manager) | LDAP Front end (Web GUI) |
 | [Gitlab](https://docs.gitlab.com/omnibus/docker/) | Open source cloud native source control |
 | [Nexus](https://github.com/sonatype/docker-nexus) | Generic centralised repository |
 | [AWX](https://github.com/ansible/awx) | Configuration automation |
