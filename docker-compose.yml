@@ -1,12 +1,32 @@
 version: '2'
+
+# The volume that you want to define for use int he containers.    
+volumes:    
+  nfs-openldap-db:
+    driver: local # Must be set to avoid issues.
+    driver_opts:
+      type: "nfs"
+      o: ${_NFS_O}
+      device: ":${_NFS_LDAP_DB}"
+  nfs-openldap-cfg:
+    driver: local # Must be set to avoid issues.
+    driver_opts:
+      type: "nfs"
+      o: ${_NFS_O}
+      device: ":${_NFS_LDAP_CFG}"
+
 services:
   openldap:
     extends:
       file: ./apps/iam/ldap.yml
       service: openldap
+    volumes:
+    - nfs-openldap-db:/var/lib/ldap
+    - nfs-openldap-cfg:/etc/ldap/slapd.d
     ports:
     - 389
     - 636
+
   ldap-gui:
     extends:
       file: ./apps/iam/ldap.yml
