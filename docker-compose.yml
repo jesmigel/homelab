@@ -1,0 +1,24 @@
+version: '2'
+services:
+  openldap:
+    extends:
+      file: ./apps/iam/ldap.yml
+      service: openldap
+    ports:
+    - 389
+    - 636
+  ldap-gui:
+    extends:
+      file: ./apps/iam/ldap.yml
+      service: ldap-user-manager
+    depends_on:
+    - openldap
+    ports:
+    - 443:443
+    - 80:80
+  
+networks:
+  services:
+    external: FALSE
+  proxy:
+    external: FALSE

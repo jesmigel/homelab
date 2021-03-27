@@ -1,0 +1,11 @@
+version: '2'
+services:
+  openldap:
+    image: osixia/openldap:1.5.0
+    env_file:
+     - ./sample.ldap.app.env
+
+  ldap-user-manager:
+    image: wheelybird/ldap-user-manager:v1.6
+    env_file:
+     - ./sample.ldap.gui.env
