@@ -1,6 +1,9 @@
-.PHONY: up down clean status ssh test
+.PHONY: up down clean status ssh test config
 
 _COMPOSE=docker-compose
+
+config:
+	$(_COMPOSE) config
 
 up:
 	$(_COMPOSE) up -d
