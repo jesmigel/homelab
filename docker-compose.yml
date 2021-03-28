@@ -21,8 +21,9 @@ services:
       file: ./apps/iam/ldap.yml
       service: openldap
     volumes:
-    - nfs-openldap-db:/var/lib/ldap
-    - nfs-openldap-cfg:/etc/ldap/slapd.d
+    - nfs-openldap-db:/var/backups/
+    # - nfs-openldap-db:/var/lib/ldap
+    # - nfs-openldap-cfg:/etc/ldap/slapd.d
     ports:
     - 389
     - 636
