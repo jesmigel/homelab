@@ -30,7 +30,7 @@ volumes:
 services:  
   openldap:
     extends:
-      file: ./apps/iam/ldap.yml
+      file: ./apps/iam/openldap/ldap.yml
       service: openldap-backup
     volumes:
     - nfs-openldap-data:/data/backup
@@ -40,7 +40,7 @@ services:
 
   ldap-gui:
     extends:
-      file: ./apps/iam/ldap.yml
+      file: ./apps/iam/openldap/ldap.yml
       service: ldap-user-manager
     depends_on:
     - openldap
