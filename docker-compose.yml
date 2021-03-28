@@ -14,6 +14,24 @@ volumes:
       type: "nfs"
       o: ${_NFS_O}
       device: ":${_NFS_LDAP_CFG}"
+  nfs-gitlab-cfg:
+    driver: local # Must be set to avoid issues.
+    driver_opts:
+      type: "nfs"
+      o: ${_NFS_O}
+      device: ":${_NFS_GIT_CFG}"
+  nfs-gitlab-log:
+    driver: local # Must be set to avoid issues.
+    driver_opts:
+      type: "nfs"
+      o: ${_NFS_O}
+      device: ":${_NFS_GIT_LOG}"
+  nfs-gitlab-data:
+    driver: local # Must be set to avoid issues.
+    driver_opts:
+      type: "nfs"
+      o: ${_NFS_O}
+      device: ":${_NFS_GIT_DATA}"
 
 services:
   openldap:
@@ -38,6 +56,16 @@ services:
     - 443:443
     - 80:80
   
+  git:
+    extends:
+      file: ./apps/git/gitlab/gitlab-ce.yml
+      service: web
+    depends_on:
+    - openldap
+    volumes:
+      - nfs-gitlab-cfg:/etc/gitlab
+      - nfs-gitlab-log:/var/log/gitlab
+      - nfs-gitlab-data:/var/opt/gitlab
 networks:
   services:
     external: FALSE

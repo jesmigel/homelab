@@ -1,0 +1,10 @@
+version: '2'
+services:
+  web:
+    image: 'gitlab/gitlab-ce:latest'
+    restart: always
+    hostname: 'gitlab.operations.maas'
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://gitlab.operations.maas:8929'
+        gitlab_rails['gitlab_shell_ssh_port'] = 2224
