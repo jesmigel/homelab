@@ -1,13 +1,25 @@
 version: '2'
 
 # The volume that you want to define for use int he containers.    
-volumes:    
-  nfs-openldap-data:
+volumes:
+  nfs-openldap-db:
     driver: local # Must be set to avoid issues.
     driver_opts:
       type: "nfs"
       o: ${_NFS_O}
-      device: ":${_NFS_LDAP_DATA}"
+      device: ":${_NFS_LDAP_DB}"
+  nfs-openldap-cfg:
+    driver: local # Must be set to avoid issues.
+    driver_opts:
+      type: "nfs"
+      o: ${_NFS_O}
+      device: ":${_NFS_LDAP_CFG}"
+  nfs-openldap-bkp:
+    driver: local # Must be set to avoid issues.
+    driver_opts:
+      type: "nfs"
+      o: ${_NFS_O}
+      device: ":${_NFS_LDAP_BKP}"
   nfs-gitlab-cfg:
     driver: local # Must be set to avoid issues.
     driver_opts:
@@ -33,7 +45,9 @@ services:
       file: ./apps/iam/openldap/ldap.yml
       service: openldap-backup
     volumes:
-    - nfs-openldap-data:/data/backup
+    - nfs-openldap-db:/var/lib/ldap
+    - nfs-openldap-cfg:/etc/ldap/slapd.d
+    - nfs-openldap-bkp:/data/backup
     ports:
     - 389
     - 636
@@ -58,6 +72,9 @@ services:
       - nfs-gitlab-cfg:/etc/gitlab
       - nfs-gitlab-log:/var/log/gitlab
       - nfs-gitlab-data:/var/opt/gitlab
+    ports:
+    - '8929:8929'
+    - '2224:22'
 networks:
   services:
     external: FALSE
