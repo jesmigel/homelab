@@ -58,6 +58,27 @@ services:
     ports:
     - '8929:8929'
     - '2224:22'
+
+# POC: Mailserver
+#  mailserver-db:
+#    extends:
+#      file: ./apps/mailserver/postfix/postfix.yml
+#      service: db
+#    depends_on:
+#    - openldap
+#
+#  mailserver:
+#    extends:
+#      file: ./apps/mailserver/postfix/postfix.yml
+#      service: postfixadmin
+#    depends_on:
+#      - mailserver-db
+#    ports:
+#      - 8000:80
+#    depends_on:
+#    - mailserver-db
+
+
 networks:
   services:
     external: FALSE
