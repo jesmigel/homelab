@@ -8,3 +8,11 @@ services:
       GITLAB_OMNIBUS_CONFIG: |
         external_url 'http://gitlab.operations.maas:8929'
         gitlab_rails['gitlab_shell_ssh_port'] = 2224
+        gitlab_rails['ldap_enabled'] = true
+        gitlab_rails['ldap_host'] = 'openldap'
+        gitlab_rails['ldap_port'] = 1389
+        gitlab_rails['ldap_uid'] = 'uid'
+        gitlab_rails['ldap_method'] = 'plain' # 'ssl' or 'plain'
+        gitlab_rails['ldap_allow_username_or_email_login'] = true
+        gitlab_rails['ldap_base'] = 'dc=ldapusermanager,dc=org'
+        gitlab_rails['admin_group'] = 'admins'
