@@ -1,5 +1,5 @@
-# jc_ops_controller
-Repository for managing operational tools referenced by platform level workloads.
+# Homelab
+Repository bootstrapping a management node for a homelab setup.
 Tech stack are as follows:
 | Name | Purpose |
 |-|-|
@@ -8,6 +8,7 @@ Tech stack are as follows:
 | [LDAP User Manager](https://github.com/wheelybird/ldap-user-manager) | LDAP Front end (Web GUI) |
 | [Gitlab](https://docs.gitlab.com/omnibus/docker/) | Open source cloud native source control |
 | [Nexus](https://github.com/sonatype/docker-nexus) | Generic centralised repository |
+| [Portainer](https://portainer.readthedocs.io/en/stable/deployment.html) | Container management GUI |
 | [AWX](https://github.com/ansible/awx) | Configuration automation |
 | [Jenkins](https://github.com/jenkinsci/docker/blob/master/README.md) | CI/CD tool |
 | [Prometheus](https://github.com/prometheus/node_exporter) | Monitoring agent |
