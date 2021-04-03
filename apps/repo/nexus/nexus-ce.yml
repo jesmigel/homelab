@@ -1,0 +1,4 @@
+version: '2'
+services:
+  nexus-ce:
+    image: sonatype/nexus3:3.30.0

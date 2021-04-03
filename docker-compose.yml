@@ -26,6 +26,12 @@ volumes:
       type: "nfs"
       o: ${_NFS_O}
       device: ":${_NFS_GIT_DATA}"
+  nfs-nexus-data:
+    driver: local # Must be set to avoid issues.
+    driver_opts:
+      type: "nfs"
+      o: ${_NFS_O}
+      device: ":${_NFS_NEXUS_DATA}"
 
 services:  
   openldap:
@@ -52,13 +58,23 @@ services:
     depends_on:
     - openldap
     volumes:
-      - nfs-gitlab-cfg:/etc/gitlab
-      - nfs-gitlab-log:/var/log/gitlab
-      - nfs-gitlab-data:/var/opt/gitlab
+    - nfs-gitlab-cfg:/etc/gitlab
+    - nfs-gitlab-log:/var/log/gitlab
+    - nfs-gitlab-data:/var/opt/gitlab
     ports:
     - '8929:8929'
     - '2224:22'
 
+  nexus:
+    extends:
+      file: ./apps/repo/nexus/nexus-ce.yml
+      service: nexus-ce
+    depends_on:
+    - openldap
+    volumes:
+    - nfs-nexus-data:/nexus-data
+    ports:
+    - 10000:8081
 # POC: Mailserver
 #  mailserver-db:
 #    extends:
