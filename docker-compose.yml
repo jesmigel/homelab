@@ -32,6 +32,12 @@ volumes:
       type: "nfs"
       o: ${_NFS_O}
       device: ":${_NFS_NEXUS_DATA}"
+  nfs-portainer-data:
+    driver: local # Must be set to avoid issues.
+    driver_opts:
+      type: "nfs"
+      o: ${_NFS_O}
+      device: ":${_NFS_PORTAINER_DATA}"
 
 services:  
   openldap:
@@ -75,6 +81,20 @@ services:
     - nfs-nexus-data:/nexus-data
     ports:
     - 10000:8081
+
+  portainer:
+    extends:
+      file: ./apps/repo/portainer/portainer.yml
+      service: portainer
+    depends_on:
+    - openldap
+    ports:
+    - 9000:9000
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    - nfs-portainer-data:/data
+
+
 # POC: Mailserver
 #  mailserver-db:
 #    extends:
