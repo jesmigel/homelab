@@ -1,11 +1,13 @@
 .PHONY: up down clean status ssh test config
 
 _COMPOSE=docker-compose
-
-include sample.compose.env
+_TEMPLATE_ENV=sample.compose.env
 
 config:
 	$(_COMPOSE) config
+
+init_env:
+	cp ${_TEMPLATE_ENV} .env
 
 up:
 	$(_COMPOSE) up -d
