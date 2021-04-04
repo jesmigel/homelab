@@ -42,14 +42,14 @@ volumes:
 services:  
   openldap:
     extends:
-      file: ./apps/iam/openldap/ldap.yml
+      file: ./apps/iam/ldap.yml
       service: openldap
     volumes:
     - nfs-openldap-data:/bitnami/openldap
 
   ldap-gui:
     extends:
-      file: ./apps/iam/openldap/ldap.yml
+      file: ./apps/iam/ldap.yml
       service: ldap-user-manager
     depends_on:
     - openldap
@@ -59,7 +59,7 @@ services:
   
   git:
     extends:
-      file: ./apps/git/gitlab/gitlab-ce.yml
+      file: ./apps/git/gitlab-ce.yml
       service: web
     depends_on:
     - openldap
@@ -73,7 +73,7 @@ services:
 
   nexus:
     extends:
-      file: ./apps/repo/nexus/nexus-ce.yml
+      file: ./apps/repo/nexus-ce.yml
       service: nexus-ce
     depends_on:
     - openldap
@@ -84,7 +84,7 @@ services:
 
   portainer:
     extends:
-      file: ./apps/repo/portainer/portainer.yml
+      file: ./apps/repo/portainer.yml
       service: portainer
     depends_on:
     - openldap
@@ -93,7 +93,6 @@ services:
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
     - nfs-portainer-data:/data
-
 
 # POC: Mailserver
 #  mailserver-db:
