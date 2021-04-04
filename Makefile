@@ -4,7 +4,7 @@ _COMPOSE=docker-compose
 _TEMPLATE_ENV=sample.compose.env
 
 init_env:
-	@(. $(_TEMPLATE_ENV) && eval "echo \"$$(cat ./$(_TEMPLATE_ENV))\"") > .env
+	@(. ./$(_TEMPLATE_ENV) && eval "echo \"$$(cat ./$(_TEMPLATE_ENV))\"") > .env
 
 config: init_env
 	$(_COMPOSE) config
