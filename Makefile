@@ -2,6 +2,7 @@
 
 _COMPOSE=docker-compose
 _TEMPLATE_ENV=sample.compose.env
+include $(_TEMPLATE_ENV)
 
 init_env:
 	@(. ./$(_TEMPLATE_ENV) && eval "echo \"$$(cat ./$(_TEMPLATE_ENV))\"") > .env
@@ -27,7 +28,7 @@ ssh:
 	$(_COMPOSE) exec ldap
 
 test:
-	cat .env
+	$(_COMPOSE) up $(_TEST)
 
 logtest:
 	$(_COMPOSE) logs $(_TEST)
