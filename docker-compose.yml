@@ -43,7 +43,7 @@ services:
   openldap:
     extends:
       file: ./apps/iam/openldap/ldap.yml
-      service: openldap-backup
+      service: openldap
     volumes:
     - nfs-openldap-data:/bitnami/openldap
 

@@ -1,6 +1,6 @@
 version: '2'
 services:
-  openldap-backup:
+  openldap:
     image: docker.io/bitnami/openldap:2-debian-10
     env_file:
      - ./sample.ldap.app.env
