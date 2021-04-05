@@ -38,6 +38,12 @@ volumes:
       type: "nfs"
       o: ${_NFS_O}
       device: ":${_NFS_PORTAINER_DATA}"
+  nfs-proxy-conf:
+    driver: local # Must be set to avoid issues.
+    driver_opts:
+      type: "nfs"
+      o: ${_NFS_O}
+      device: ":${_NFS_NGINX_CONF}"
 
 services:  
   openldap:
@@ -53,9 +59,6 @@ services:
       service: ldap-user-manager
     depends_on:
     - openldap
-    ports:
-    - 443:443
-    - 80:80
   
   git:
     extends:
@@ -67,9 +70,6 @@ services:
     - nfs-gitlab-cfg:/etc/gitlab
     - nfs-gitlab-log:/var/log/gitlab
     - nfs-gitlab-data:/var/opt/gitlab
-    ports:
-    - '8929:8929'
-    - '2224:22'
 
   nexus:
     extends:
@@ -79,8 +79,6 @@ services:
     - openldap
     volumes:
     - nfs-nexus-data:/nexus-data
-    ports:
-    - 10000:8081
 
   portainer:
     extends:
@@ -88,11 +86,19 @@ services:
       service: portainer
     depends_on:
     - openldap
-    ports:
-    - 9000:9000
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
-    - nfs-portainer-data:/data
+    - nfs-portainer-conf:/data
+
+  proxy:
+    extends:
+      file: ./apps/proxy/nginx.yml
+      service: nginx
+    volumes:
+    - nfs-proxy-conf:/etc/nginx/conf.d:rw
+    ports:
+    - 443:443
+    - 80:80
 
 # POC: Mailserver
 #  mailserver-db:
