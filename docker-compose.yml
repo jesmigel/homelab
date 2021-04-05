@@ -88,7 +88,7 @@ services:
     - openldap
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
-    - nfs-portainer-conf:/data
+    - nfs-portainer-data:/data
 
   proxy:
     extends:
