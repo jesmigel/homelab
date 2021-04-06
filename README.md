@@ -14,7 +14,8 @@ Tech stack are as follows:
 | [Prometheus](https://github.com/prometheus/node_exporter) | Monitoring agent |
 
 ## Software Architecture
-** TODO: Add diagram **
+![alt text](https://github.com/jesmigel/diagrams/raw/main/data/infrastructure.png "Infrastructure Diagram")
+
 
 ## Prerequisites
 ** TODO: Add host details **
