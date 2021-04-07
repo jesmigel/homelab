@@ -44,6 +44,12 @@ volumes:
       type: "nfs"
       o: ${_NFS_O}
       device: ":${_NFS_NGINX_CONF}"
+  ci-jenkins-data:
+    driver: local # Must be set to avoid issues.
+    driver_opts:
+      type: "nfs"
+      o: ${_NFS_O}
+      device: ":${_NFS_JENKINS_DATA}"
 
 services:  
   openldap:
@@ -99,6 +105,15 @@ services:
     ports:
     - 443:443
     - 80:80
+
+  ci:
+    extends:
+      file: ./apps/ci/jenkins.yml
+      service: server
+    depends_on:
+    - openldap
+    volumes:
+    - ci-jenkins-data:/var/jenkins_home:rw
 
 # POC: Mailserver
 #  mailserver-db:

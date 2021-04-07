@@ -1,0 +1,7 @@
+version: '2'
+services:
+  server:
+    image: jenkins/jenkins:2.277.1-lts-jdk11
+    environment:
+      JAVA_OPTS: "-Djava.awt.headless=true"
+    
