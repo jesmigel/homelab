@@ -44,6 +44,12 @@ volumes:
       type: "nfs"
       o: ${_NFS_O}
       device: ":${_NFS_NGINX_CONF}"
+  nfs-proxy-cert:
+    driver: local # Must be set to avoid issues.
+    driver_opts:
+      type: "nfs"
+      o: ${_NFS_O}
+      device: ":${_NFS_NGINX_CERT}"
   ci-jenkins-data:
     driver: local # Must be set to avoid issues.
     driver_opts:
@@ -110,6 +116,7 @@ services:
       service: nginx
     volumes:
     - nfs-proxy-conf:/etc/nginx/conf.d:rw
+    - nfs-proxy-conf:/mnt/nginx/cert:rw
     ports:
     - 443:443
     - 80:80
