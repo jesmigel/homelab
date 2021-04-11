@@ -100,6 +100,7 @@ services:
     extends:
       file: ./apps/k3s/rancher.yml
       service: rancher
+    privileged: true
     depends_on:
     - openldap
 
