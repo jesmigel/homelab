@@ -116,7 +116,7 @@ services:
       service: nginx
     volumes:
     - nfs-proxy-conf:/etc/nginx/conf.d:rw
-    - nfs-proxy-conf:/mnt/nginx/cert:rw
+    - nfs-proxy-cert:/mnt/nginx/cert:rw
     ports:
     - 443:443
     - 80:80
