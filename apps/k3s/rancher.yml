@@ -1,0 +1,5 @@
+version: '2'
+services:
+  rancher:
+    image: rancher/rancher:master-b202f20c2cf53b30a80b04494378f415ffa9b476-linux-amd64
+    

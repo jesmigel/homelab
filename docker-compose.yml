@@ -96,6 +96,13 @@ services:
     - /var/run/docker.sock:/var/run/docker.sock
     - nfs-portainer-data:/data
 
+  rancher:
+    extends:
+      file: ./apps/k3s/rancher.yml
+      service: rancher
+    depends_on:
+    - openldap
+
   proxy:
     extends:
       file: ./apps/proxy/nginx.yml
