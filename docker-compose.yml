@@ -62,6 +62,11 @@ services:
     extends:
       file: ./apps/iam/ldap.yml
       service: openldap
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: "1g"
     volumes:
     - nfs-openldap-data:/bitnami/openldap
 
@@ -71,6 +76,11 @@ services:
       service: ldap-user-manager
     depends_on:
     - openldap
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: "1g"
   
   git:
     extends:
@@ -78,6 +88,11 @@ services:
       service: web
     depends_on:
     - openldap
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: "1g"
     volumes:
     - nfs-gitlab-cfg:/etc/gitlab
     - nfs-gitlab-log:/var/log/gitlab
@@ -89,6 +104,11 @@ services:
       service: nexus-ce
     depends_on:
     - openldap
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: "1g"
     volumes:
     - nfs-nexus-data:/nexus-data
 
@@ -98,6 +118,11 @@ services:
       service: portainer
     depends_on:
     - openldap
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: "1g"
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
     - nfs-portainer-data:/data
@@ -109,11 +134,21 @@ services:
     privileged: true
     depends_on:
     - openldap
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: "1g"
 
   proxy:
     extends:
       file: ./apps/proxy/nginx.yml
       service: nginx
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: "1g"
     volumes:
     - nfs-proxy-conf:/etc/nginx/conf.d:rw
     - nfs-proxy-cert:/mnt/nginx/cert:rw
@@ -127,6 +162,11 @@ services:
       service: server
     depends_on:
     - openldap
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: "1g"
     volumes:
     - ci-jenkins-data:/var/jenkins_home:rw
 
