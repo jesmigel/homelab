@@ -1,5 +1,5 @@
 # Project Repositories
-Consolidation of repositories used to build up a provate Homelab
+Consolidation of repositories used to build up a private Homelab
 
 ### Internal
 | Name | Status | Comment |
