@@ -4,7 +4,7 @@ Consolidation of repositories used to build up a private Homelab
 ### Internal
 | Name | Status | Comment |
 | - | - | - |
-| [ansible-role-common](https://github.com/jesmigel/ansible-role-common) | [![CI](https://github.com/jesmigel/ansible-role-common/actions/workflows/build.yaml/badge.svg?branch=main)](https://github.com/jesmigel/ansible-role-common/actions/workflows/build.yaml) ||
+| [ansible-role-common](https://github.com/jesmigel/ansible-role-common) | [![CI](https://github.com/jesmigel/ansible-role-common/actions/workflows/build.yaml/badge.svg?branch=main)](https://github.com/jesmigel/ansible-role-common/actions/workflows/build.yaml) | Ansible common role used for building DevOps environments. |
 | [ansible-role-freeipa](https://github.com/jesmigel/ansible-role-freeipa) | TBA | Ansible role used for setting up a freeipa server. |
 | [ansible-role-hashicorp](https://github.com/jesmigel/ansible-role-hashicorp) | [![CI](https://github.com/jesmigel/ansible-role-hashicorp/actions/workflows/build.yaml/badge.svg?branch=main)](https://github.com/jesmigel/ansible-role-hashicorp/actions/workflows/build.yaml) ||
 | [ansible-role-docker](https://github.com/jesmigel/ansible-role-docker) | [![CI](https://github.com/jesmigel/ansible-role-docker/actions/workflows/build.yaml/badge.svg?branch=main)](https://github.com/jesmigel/ansible-role-docker/actions/workflows/build.yaml) | Ansible role used to set up a docker host. |
